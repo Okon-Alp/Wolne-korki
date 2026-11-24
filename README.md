@@ -4,6 +4,24 @@ Prosta aplikacja dla jednego korepetytora, którą stawiasz u siebie. Rodzice i 
 
 Otwarte oprogramowanie na licencji MIT.
 
+## Wypróbuj w 2 minuty, bez instalowania
+
+[![Otwórz w GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Okon-Alp/Wolne-korki?quickstart=1)
+
+1. Kliknij przycisk powyżej, a potem **Create codespace**. Potrzebujesz tylko darmowego konta na [GitHubie](https://github.com).
+2. Poczekaj 1–2 minuty. W przeglądarce otworzy się edytor, który sam zainstaluje biblioteki i uruchomi aplikację, a potem otworzy ją w nowej karcie. Jeśli karta się nie otworzy, kliknij **Open in Browser** w okienku w prawym dolnym rogu albo otwórz zakładkę **Ports** i kliknij ikonę globusa przy porcie 3000.
+3. Jeśli zamiast aplikacji zobaczysz błąd 404, poczekaj chwilę i odśwież stronę. Serwer jeszcze się uruchamiał.
+4. **Kod konfiguracji jest w terminalu na dole edytora**, w linii `KOD: …`. Wpisz go na stronie i załóż konto korepetytora.
+
+Dostajesz własną, pustą kopię aplikacji. Wszystko, co w niej wpiszesz, zostaje tylko w Twoim Codespace i nikt poza Tobą tego nie widzi.
+
+**Jak sprawdzić widok rodzica:**
+1. W edytorze otwórz zakładkę **Ports**, kliknij prawym przyciskiem port 3000 i wybierz **Port Visibility → Public**.
+2. W aplikacji wejdź w **Uczniowie → Dodaj ucznia → Dodaj i utwórz link** i kliknij **Kopiuj link**.
+3. Otwórz ten link w oknie prywatnym (incognito) albo na telefonie.
+
+**Po testach** usuń Codespace na <https://github.com/codespaces> („…” → **Delete**), żeby nie zajmował miejsca w darmowym limicie.
+
 ## Co potrafi
 
 **Dla korepetytora**
@@ -45,40 +63,25 @@ To wersja do prywatnego użytku, dla jednego korepetytora i jego uczniów. Dlate
 - wyszukiwarka nauczycieli, profile publiczne, opinie i wyróżnienia;
 - rejestracja „z ulicy”, bo konta zakłada się wyłącznie z Twojego zaproszenia.
 
-## Uruchomienie bez instalowania czegokolwiek (GitHub Codespaces)
+## Używanie na co dzień
 
-Aplikacja potrzebuje serwera, bo ma bazę danych i łączy dwie osoby na lekcji. Do tego kamera działa w przeglądarce tylko przez HTTPS. Codespaces daje jedno i drugie za darmo, a całość klikasz w przeglądarce. Konto GitHub Free ma w cenie 120 „godzin rdzeniowych” miesięcznie, czyli **60 godzin** działania na standardowej maszynie 2-rdzeniowej, oraz 15 GB miejsca.
+Aplikacja potrzebuje serwera, bo ma bazę danych i łączy dwie osoby na lekcji. Do tego kamera działa w przeglądarce tylko przez HTTPS. Masz trzy możliwości: GitHub Codespaces (najprostsze, za darmo), Railway (serwer w chmurze) albo własny komputer lub serwer.
 
-**Za pierwszym razem (ok. 10 minut):**
+### GitHub Codespaces
 
-1. Załóż darmowe konto na <https://github.com> (jeśli jeszcze nie masz).
-2. Wejdź na <https://github.com/codespaces/templates>, wybierz **Blank** i kliknij **Use this template**. W karcie przeglądarki otworzy się edytor z terminalem na dole.
-3. Przeciągnij plik `wolne-korki.zip` z komputera do panelu plików po lewej stronie edytora.
-4. W terminalu wpisz:
-   ```bash
-   unzip -q wolne-korki.zip && rm wolne-korki.zip && npm install --omit=dev && npm start
-   ```
-   Jeśli pojawi się komunikat o za starym Node.js, wpisz `nvm install 22` i powtórz ostatnią komendę.
-5. W prawym dolnym rogu pojawi się okienko „Open in Browser”. Kliknij je (albo otwórz zakładkę **Ports** i kliknij ikonę globusa przy porcie 3000).
-6. Jeśli zobaczysz błąd 404, poczekaj minutę i odśwież stronę.
-7. Na stronie wpisz **kod konfiguracji** z terminala i załóż konto korepetytora.
+Ten sam Codespace, który powstał z przycisku „Wypróbuj”, może służyć do prawdziwych lekcji. Konto GitHub Free ma w cenie 120 „godzin rdzeniowych” miesięcznie, czyli **60 godzin** działania na standardowej maszynie 2-rdzeniowej, oraz 15 GB miejsca.
 
-**Żeby rodzice i uczniowie mogli wejść:** w zakładce **Ports** kliknij prawym przyciskiem port 3000 i wybierz **Port Visibility → Public**. Bez tego adres działa tylko dla Ciebie. Linki z zaproszeniami same używają poprawnego adresu `https://…app.github.dev`.
-
-**Warto wiedzieć:**
+- **Żeby rodzice i uczniowie mogli wejść**, w zakładce **Ports** kliknij prawym przyciskiem port 3000 i wybierz **Port Visibility → Public**. Bez tego adres działa tylko dla Ciebie. Linki z zaproszeniami same używają poprawnego adresu `https://…app.github.dev`.
 - **Usypianie:** Codespace usypia się po okresie bezczynności, domyślnie po 30 minutach. Ruch na udostępnionym porcie się nie liczy. Aplikacja co minutę wypisuje do terminala „aktywność”, gdy ktoś z niej korzysta, i to powinno podtrzymywać środowisko podczas lekcji. Dla pewności ustaw dłuższy czas w **GitHub → Settings → Codespaces → Default idle timeout** (maks. 240 minut).
-- **Uśpiony Codespace = wyłączona aplikacja.** Dopóki go nie uruchomisz ponownie na <https://github.com/codespaces>, rodzice nie zarezerwują lekcji. Po wznowieniu wpisz w terminalu `npm start`.
-- **Dane** (baza, pliki) zostają w Codespace między uruchomieniami. Nieużywany, zatrzymany Codespace GitHub usuwa jednak domyślnie po 30 dniach, więc rób eksport CSV i kopię zapasową.
-- **Repozytorium:** gdy chcesz mieć kod na GitHubie (np. pod stały hosting), na <https://github.com/codespaces> kliknij „…” przy swoim Codespace i wybierz **Publish to a new repository**. Kolejne Codespace utworzone z tego repozytorium uruchomią aplikację same (gotowa konfiguracja jest w `.devcontainer/`).
+- **Uśpiony Codespace oznacza wyłączoną aplikację.** Dopóki nie uruchomisz go ponownie na <https://github.com/codespaces>, rodzice nie zarezerwują lekcji. Po wznowieniu aplikacja startuje sama.
+- **Dane** (baza, pliki) zostają w Codespace między uruchomieniami. Nieużywany, zatrzymany Codespace GitHub usuwa jednak domyślnie po 30 dniach, więc rób eksport CSV i kopię zapasową (niżej).
 
-Codespaces świetnie nadaje się do wypróbowania i do pojedynczych lekcji. Do stałej pracy, kiedy rodzice rezerwują o dowolnej porze, potrzebny jest serwer działający cały czas (niżej).
-
-## Na stałe w internecie
+Codespaces dobrze nadaje się do wypróbowania i do pojedynczych lekcji. Do stałej pracy, kiedy rodzice rezerwują o dowolnej porze, potrzebny jest serwer działający cały czas.
 
 ### Railway (też tylko przeglądarka)
 
-1. Opublikuj kod jako repozytorium GitHub (punkt „Repozytorium” wyżej).
-2. Na <https://railway.com> zaloguj się kontem GitHub, kliknij **New Project → Deploy from GitHub repo** i wybierz repozytorium. Railway sam zbuduje aplikację z `Dockerfile`.
+1. Zrób własną kopię tego repozytorium przyciskiem **Fork** u góry strony.
+2. Na <https://railway.com> zaloguj się kontem GitHub, kliknij **New Project → Deploy from GitHub repo** i wybierz swój fork. Railway sam zbuduje aplikację z `Dockerfile`.
 3. W usłudze dodaj **Volume** zamontowany w `/data`. Tam będzie baza i pliki.
 4. W **Variables** ustaw:
    - `TRUST_PROXY=1`
@@ -91,12 +94,14 @@ Codespaces świetnie nadaje się do wypróbowania i do pojedynczych lekcji. Do s
 
 ### Własny serwer albo komputer (Node.js lub Docker)
 
-Na Linuksie wystarczy Node.js w wersji **22.13 lub nowszej**. Rozpakuj zip do osobnego folderu i w nim uruchom:
+Pobierz `wolne-korki.zip` z zakładki **Releases** tego repozytorium (albo sklonuj repozytorium) i rozpakuj do osobnego folderu. Na Linuksie wystarczy Node.js w wersji **22.13 lub nowszej**. W folderze aplikacji uruchom:
 
 ```bash
 npm install --omit=dev
 npm start
 ```
+
+Kod konfiguracji pojawi się w terminalu.
 
 Albo przez Dockera:
 
@@ -167,6 +172,8 @@ sqlite3 data/wolne-korki.db ".backup 'kopia-$(date +%F).db'"
 tar czf uploads-$(date +%F).tgz data/uploads
 ```
 
+Katalog `data/` jest wykluczony z gita (`.gitignore`), więc Twoja baza nie trafi przypadkiem do repozytorium.
+
 ## Prywatność i dane dzieci
 
 - Dane leżą wyłącznie na Twoim serwerze. Strona nie ładuje zewnętrznych skryptów, fontów ani analityki. KaTeX oraz tablica razem z czcionkami Excalidraw są serwowane lokalnie, a nagłówki CSP blokują wszystko spoza Twojej domeny.
@@ -188,6 +195,7 @@ Raport liczy **przychód** jako odbyte lekcje plus opłaty za późne odwołania
 - Frontend: czysty JavaScript (moduły ES), bez kroku budowania. Szablony automatycznie escapują dane.
 - Tablica: React + Excalidraw, zbudowane esbuildem do `public/board/`. Gotowa paczka jest w repozytorium, więc do uruchomienia wystarczy `npm install --omit=dev`. Po zmianach w `board-src/` uruchom `npm install && npm run build`. Build podmienia zapasowy CDN czcionek Excalidraw na Twój serwer i zbiera licencje bibliotek do `public/board/THIRD_PARTY_LICENSES.txt`.
 - Czasy w bazie są w UTC (ms). Dostępność trzymana jest w czasie lokalnym korepetytora (`Europe/Warsaw`), a zmiany czasu letni/zimowy są obsłużone przez `Intl`.
+- Konfiguracja Codespaces jest w `.devcontainer/`: Node 22, instalacja zależności i start serwera przy każdym otwarciu.
 
 ```
 src/
