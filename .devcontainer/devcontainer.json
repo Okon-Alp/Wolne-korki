@@ -1,0 +1,12 @@
+{
+  "name": "Wolne Korki",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "postCreateCommand": "npm install --omit=dev --no-audit --no-fund",
+  "postAttachCommand": { "serwer": "npm start" },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "Wolne Korki", "onAutoForward": "openBrowser" }
+  },
+  "containerEnv": { "TZ": "Europe/Warsaw" },
+  "hostRequirements": { "cpus": 2 }
+}

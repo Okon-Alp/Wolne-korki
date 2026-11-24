@@ -437,14 +437,16 @@ export function createApi({ db, dataDir, setupCode, publicUrl, maxUploadMb = 25,
 
   api.post('/materials/upload', uploadLimit, auth, express.raw({ type: () => true, limit: `${maxUploadMb}mb` }), (req, res) => {
     const { studentId, lessonId } = materialTarget(req, { student_id: qs(req, 'student_id'), lesson_id: qs(req, 'lesson_id') });
-    // Treść musi być surowym plikiem (Buffer), nie np. sparsowanym JSON-em.
+    // Treść musi być surowym plikiem (Buffer), nie np. sparsowanym JSON-em. Rozmiar liczymy przez
+    // Buffer.byteLength, a nie .length na danych z zapytania (które mogłyby być tablicą lub obiektem).
     const data = Buffer.isBuffer(req.body) ? req.body : Buffer.alloc(0);
-    if (data.length === 0) throw httpError(400, 'Pusty plik.');
+    const size = Buffer.byteLength(data);
+    if (size === 0) throw httpError(400, 'Pusty plik.');
     if (req.user.role !== 'tutor') {
       const used = db.prepare(
         'SELECT COALESCE(SUM(m.size), 0) AS n FROM materials m JOIN students s ON s.id = m.student_id WHERE s.client_id = ? AND m.uploaded_by = ?'
       ).get(req.user.id, req.user.id).n;
-      if (used + data.length > clientStorageMb * 1048576) {
+      if (used + size > clientStorageMb * 1048576) {
         throw httpError(413, `Brak miejsca: Twoje pliki zajmują już ${Math.round(used / 1048576)} z ${clientStorageMb} MB. Usuń starsze pliki albo poproś korepetytora.`);
       }
     }
@@ -456,7 +458,7 @@ export function createApi({ db, dataDir, setupCode, publicUrl, maxUploadMb = 25,
     const r = db.prepare(
       `INSERT INTO materials (student_id, lesson_id, title, file_name, file_path, mime, size, uploaded_by, created_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    ).run(studentId, lessonId, str(qs(req, 'title'), 200) || fileName, fileName, stored, mime, data.length, req.user.id, Date.now());
+    ).run(studentId, lessonId, str(qs(req, 'title'), 200) || fileName, fileName, stored, mime, size, req.user.id, Date.now());
     res.status(201).json({ id: r.lastInsertRowid });
   });
 
