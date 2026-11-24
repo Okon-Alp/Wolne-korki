@@ -1,0 +1,36 @@
+{
+  "name": "wolne-korki",
+  "version": "0.1.0",
+  "description": "Prosta, samodzielnie hostowana aplikacja dla korepetytora: kalendarz, rezerwacje, lekcje online z wideo i tablicą, panel rodzica.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "prestart": "node scripts/check-node.mjs",
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch src/server.js",
+    "build": "node scripts/build-board.mjs",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.5",
+    "katex": "^0.19.1",
+    "ws": "^8.23.0"
+  },
+  "devDependencies": {
+    "@excalidraw/excalidraw": "^0.18.1",
+    "esbuild": "^0.28.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "overrides": {
+    "lodash-es": "^4.18.1",
+    "katex": "$katex",
+    "nanoid@3": "^3.3.20",
+    "nanoid@4": "^5.1.16"
+  }
+}
