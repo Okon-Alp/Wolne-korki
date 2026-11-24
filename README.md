@@ -60,7 +60,8 @@ Aplikacja potrzebuje serwera, bo ma bazę danych i łączy dwie osoby na lekcji.
    ```
    Jeśli pojawi się komunikat o za starym Node.js, wpisz `nvm install 22` i powtórz ostatnią komendę.
 5. W prawym dolnym rogu pojawi się okienko „Open in Browser”. Kliknij je (albo otwórz zakładkę **Ports** i kliknij ikonę globusa przy porcie 3000).
-6. Na stronie wpisz **kod konfiguracji** z terminala i załóż konto korepetytora.
+6. Jeśli zobaczysz błąd 404, poczekaj minutę i odśwież stronę.
+7. Na stronie wpisz **kod konfiguracji** z terminala i załóż konto korepetytora.
 
 **Żeby rodzice i uczniowie mogli wejść:** w zakładce **Ports** kliknij prawym przyciskiem port 3000 i wybierz **Port Visibility → Public**. Bez tego adres działa tylko dla Ciebie. Linki z zaproszeniami same używają poprawnego adresu `https://…app.github.dev`.
 
